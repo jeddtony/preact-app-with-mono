@@ -28,10 +28,10 @@ export default class App extends Component {
 				<Router onChange={this.handleRoute}>
 				<Jed path="/jed" user="jed" />
 				<SecondJed path="/second/jed" user="jed" />
-					<Home path="/" />
+					<Login path="/" />
 					<Profile path="/profile/" user="me" />
 					<Profile path="/profile/:user" />
-					<Login path="/login" />
+					<Home path="/home" />
 					<HiPage path="/hipage" user="jed"/>
 				</Router>
 			</div>

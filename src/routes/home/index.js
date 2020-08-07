@@ -29,6 +29,8 @@ const Home = () => {
 	const [debits, setDebits] = useState([]);
 
 	const [selectedTab, setSelectedTab] = useState({value: 'all'})
+	const [isLoading, setIsLoading] = useState(true);
+	const [isError, setIsError] = useState(false);
 	useEffect(() => {
 		let code = getCode();
 		let data ={code}
@@ -65,6 +67,11 @@ const Home = () => {
 				let debitHistory = await api.getDebits(userId);
 				getTen = debitHistory.data.history.slice(0, 10);
 				setDebits(getTen);
+
+				setIsLoading(false);
+			}
+			else{
+				setIsError(true);
 			}
 			// console.log(results)
 
@@ -95,6 +102,7 @@ const Home = () => {
 	}
 	return(
 	<div className="container">
+		
 	<div className="row" style={style.redBackground}>
 
 		<div className="col-12 col-sm-12 col-md-6 col-xl-6">
@@ -111,7 +119,17 @@ const Home = () => {
         thousandSeparator={true}
 		prefix={'₦'}
 		style={{fontSize: '25px'}}
-    /></p>
+    />
+	<br />
+	Dispensable Bal:<ReactNumber
+        value={Number(userDetail.balance).toFixed(2)}
+        displayType={'text'}
+        thousandSeparator={true}
+		prefix={'₦'}
+		style={{fontSize: '15px'}}
+    />
+	</p>
+	
 	
 		</div>
 	</div>
@@ -125,6 +143,25 @@ const Home = () => {
 			<button type="button" class="btn btn-outline-danger" onClick={()=> toggleSelected('debit')}>Debit</button>	
 		</div>
 	</div>
+{
+	isLoading && (<div className="d-flex justify-content-center py-5">
+	<div className="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+  <span className="sr-only">Loading...</span>
+</div>
+</div>)
+}
+
+{
+	isError && (<div className="d-flex justify-content-center py-5">
+	<div class="alert alert-danger" role="alert">
+  An error occurred. 
+  Refresh your browser
+</div>
+</div>
+
+	)
+}
+	
 
 	<div class="row">
 		<div className="col-12 col-md-12 col-xl-12">
