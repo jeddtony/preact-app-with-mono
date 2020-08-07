@@ -1,0 +1,57 @@
+body{
+    background-color: #EFFDF6;
+}
+
+.green-background-1 {
+    background-color: #E0FBED;   
+}
+
+.purple-background {
+    /* background-color: #8934AD; */
+    /* opacity: 0.2; */
+    background-color: rgba(137, 52, 173, 0.2);
+}
+
+.orange-background {
+    /* background-color:#D94F00; */
+    background-color: rgba(217, 79, 0, 0.2);
+}
+
+.cowry-wise-background {
+    background-color: rgba(5, 93, 224, 0.2);
+}
+
+.piggy-vest-background {
+    background-color: rgba(8, 62, 158, 0.2);
+}
+
+.border-radius-10 {
+    border-radius: 10px;
+}
+.check-mark {
+    padding-top: 12px;
+}
+
+.faint-text {
+    color: #101326;
+}
+
+.btn-account {
+    color: #101326;
+    background-color: #68F3A8;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.link-account {
+    color: #202020;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.lighter-background {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding-top: 20px;
+}
