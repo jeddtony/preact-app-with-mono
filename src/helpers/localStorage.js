@@ -13,3 +13,11 @@ export const setId = (id) => {
 export const getId = () => {
     return localStorage.getItem('MONO_USER_ID');
 }
+
+export const setLoanAmount =(amount) => {
+    localStorage.setItem('MONO_LOAN_AMOUNT', amount);
+}
+
+export const getLoanAmount = (amount) => {
+    return localStorage.getItem('MONO_LOAN_AMOUNT');
+}
