@@ -2,9 +2,10 @@ import { h } from 'preact';
 import {useState, useEffect, useReducer} from 'preact/hooks';
 import ReactNumber from 'react-number-format';
 import * as api from '../../api/api';
-import {getCode, setId, getLoanAmount} from '../../helpers';
+import {getCode, setId, getLoanAmount, calculateLoanEligibility} from '../../helpers';
 import moment from 'moment';
 import logo from '../login/mono-logo.png';
+
 
 const style = {
 	redBackground: {
@@ -32,28 +33,6 @@ const Home = () => {
 	const [selectedTab, setSelectedTab] = useState({value: 'all'})
 	const [isLoading, setIsLoading] = useState(true);
 	const [isError, setIsError] = useState(false);
-	
-	const reducer = (accumulator, currentValue) => Number(accumulator) + Number(currentValue.amount);
-
-	const calculateLoanEligibility = (creditArray) => {
-
-		// console.log(creditArray);
-		let totalAmount = 0;
-		creditArray.map(cred => {
-			totalAmount = totalAmount + cred.amount; 
-		})
-		// let reducedArray = creditArray.reduce(reducer);
-
-		console.log(totalAmount);
-		let averageIncome = Math.ceil(totalAmount/creditArray.length);
-
-		console.log(averageIncome);
-
-		let principal = Math.ceil (0.45 * averageIncome * 12);
-		console.log(principal);
-
-		return principal;
-	}
 
 	
 	useEffect(() => {
@@ -103,7 +82,7 @@ const Home = () => {
 				setIsLoading(false);
 				setIsError(true);
 			}
-			// console.log(results)
+			
 
 
 		}
@@ -334,6 +313,9 @@ const AllDebits = ({debits}) => {
 </>
 	)
 }
+
+
+
 export default Home;
 
 

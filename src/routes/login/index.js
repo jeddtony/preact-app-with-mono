@@ -1,14 +1,7 @@
 import { h } from 'preact';
-import {useEffect} from 'preact/hooks';
-import {setCode, setLoanAmount} from '../../helpers'
+import {setCode, setLoanAmount} from '../../helpers';
 import logo from './mono-logo.png';
 const Login = () => {
-
-    useEffect(() => {
-        
-        return () => {}
-    }, [])
-
 
     const triggerConnect =(e) => {
         e.preventDefault();
