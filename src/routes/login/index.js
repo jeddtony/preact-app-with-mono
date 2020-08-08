@@ -1,6 +1,7 @@
 import { h } from 'preact';
 import {setCode, setLoanAmount} from '../../helpers';
 import logo from './mono-logo.png';
+import ReactNumber from 'react-number-format'
 const Login = () => {
 
     const triggerConnect =(e) => {
@@ -47,14 +48,30 @@ const Login = () => {
           <center>
                 {/* <h2 style={{color: '#FFF'}}>mono</h2> */}
                 <img src={logo} style={{width: '200px', height: '50px'}}/>
+                <h5 className="py-1">Enabling access to your financial accounts</h5>
+
                 <form className="py-5" onSubmit={(e)=> triggerConnect(e)}>
-                <input type="text" required class="form-control" placeholder="Name/Email"
-                 aria-label="Name or email" style={{backgroundColor: 'transparent', color: '#FFF'}} />
+                    <h5 style={{color: '#FFF'}}>Get a loan in seconds</h5>
+                <input type="text" required className="form-control" placeholder="Enter your Name/Email"
+                 aria-label="Name or email" style={{backgroundColor: 'transparent', color: '#FFF'}} 
+                 pattern=".*[a-zA-Z].*" onInvalid={()=>"setCustomValidity('Please enter on alphabets only. ')"}/>
  
- <input type="number" required class="form-control my-3" placeholder="Amount"
+ 
+ {/* <input type="number" required class="form-control my-3" placeholder="Amount"
                  aria-label="Amount" style={{backgroundColor: 'transparent', color: '#FFF'}} 
                  onChange={(e)=> setLoanAmount(e.target.value)}/>
- 
+  */}
+
+<ReactNumber displayType={'input'} 
+thousandSeparator={true}
+prefix={'₦'} 
+placeholder="Enter amount you want to borrow"
+className="form-control my-3"
+style={{backgroundColor: 'transparent', color: '#FFF'}} 
+onValueChange={(value)=> setLoanAmount(value.value)}
+required
+/>
+
  <div class="d-flex justify-content-center my-5">
                 <button class="btn btn-light" type="submit" style="width: 100%;"
                 >

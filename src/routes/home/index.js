@@ -2,7 +2,8 @@ import { h } from 'preact';
 import {useState, useEffect, useReducer} from 'preact/hooks';
 import ReactNumber from 'react-number-format';
 import * as api from '../../api/api';
-import {getCode, setId, getLoanAmount, calculateLoanEligibility} from '../../helpers';
+import {getCode, setId, getLoanAmount, calculateLoanEligibility, formatAccountType,
+convertToNaira} from '../../helpers';
 import moment from 'moment';
 import logo from '../login/mono-logo.png';
 
@@ -68,7 +69,8 @@ const Home = () => {
 
 				let eligibleAmount = calculateLoanEligibility(creditHistory.data.history);
 
-				setUserDetail({...data, eligibleAmount})
+				setUserDetail({...data, balance: convertToNaira(data.balance), type: formatAccountType(data.type), 
+					eligibleAmount})
 				getTen = creditHistory.data.history.slice(0, 10);
 				setCredits(getTen);
 
@@ -224,11 +226,12 @@ const AllTransactions = ({transferHistory})=> {
 			  <div className="row" style={{borderBottom: '1px solid #DDDDDD'}}>
 				  <div className="col-12">
 			  <p><span style={{float: 'left'}}>
-			{moment(trans.date).format("MM D YYYY, h:mm:ss")}
+			{moment(trans.date).format("MMM Do YYYY hh:mm:ss")}
 				  </span>
 			  <span style={{float: 'right'}}>{(trans.type === 'debit')? '-': ''}
 				  <ReactNumber
-				value={Number(trans.amount).toFixed(2)}
+				// value={Number(trans.amount).toFixed(2)}
+				value={convertToNaira(trans.amount)}
 				displayType={'text'}
 				thousandSeparator={true}
 				prefix={'₦'}
@@ -262,7 +265,7 @@ const AllCredits = ({credits}) => {
 				  </span>
 			  <span style={{float: 'right'}}>
 				  <ReactNumber
-				value={Number(cred.amount).toFixed(2)}
+				value={convertToNaira(deb.amount)}
 				displayType={'text'}
 				thousandSeparator={true}
 				prefix={'₦'}
@@ -295,7 +298,7 @@ const AllDebits = ({debits}) => {
 				  </span>
 			  <span style={{float: 'right'}}> -
 				  <ReactNumber
-				value={Number(deb.amount).toFixed(2)}
+				value={convertToNaira(deb.amount)}
 				displayType={'text'}
 				thousandSeparator={true}
 				prefix={'₦'}

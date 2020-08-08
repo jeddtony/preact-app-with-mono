@@ -1,6 +1,6 @@
 import {setCode, getCode, setId, getId,
-getLoanAmount, setLoanAmount} from './localStorage';
+getLoanAmount, setLoanAmount,} from './localStorage';
 
-import {calculateLoanEligibility} from './loanCalculation'
+import {calculateLoanEligibility, formatAccountType, convertToNaira} from './loanCalculation'
 export {setCode, getCode, setId, getId, getLoanAmount, setLoanAmount, 
-calculateLoanEligibility};
+calculateLoanEligibility, formatAccountType, convertToNaira};
